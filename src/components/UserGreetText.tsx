@@ -1,12 +1,13 @@
 "use client";
+import { User } from "@supabase/supabase-js";
 import { createClient } from "../../utils/supabase/client";
 import React, { useEffect, useState } from "react";
 
 const UserGreetText = () => {
-  const [user, setUser] = useState<any>(null);
-  const supabase = createClient();
+  const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
     const fetchUser = async () => {
+      const supabase = createClient();
       const {
         data: { user },
       } = await supabase.auth.getUser();
